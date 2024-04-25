@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Mail;
+namespace App\Models\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewPartnerMail extends Mailable
+class InvitationCancelMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
-     */
-    public function __construct()
+     */ 
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -28,6 +28,6 @@ class NewPartnerMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('support@resolve.com')->subject('Invitation Cancelled')->view('invitation_cancel_email_template')->with('data', $this->data);
     }
 }

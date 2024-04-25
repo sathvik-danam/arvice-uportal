@@ -12,7 +12,7 @@ use App\Models\Invitation;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendMail;
+use App\Models\Mail\SendMail;
 
 class EnquiryController extends Controller
 {

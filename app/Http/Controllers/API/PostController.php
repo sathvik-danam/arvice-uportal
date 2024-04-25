@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Subcategory;
@@ -68,7 +69,7 @@ class PostController extends Controller
             'city' => $request['city'],
             'photo1' => $request['photo1'],
             'photo2' => $request['photo2'],
-            'slug' => str_slug($request->profession)
+            'slug' => Str::slug($request->profession)
         ]);
         
 
@@ -179,8 +180,8 @@ class PostController extends Controller
         $user = Post::findOrFail($id); 
         $user->delete();
     } 
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = Post::where(function($query) use ($search){
                 $query->where('category','LIKE',"%$search%")
                 ->orWhere('profession','LIKE',"%$search%");
@@ -191,9 +192,8 @@ class PostController extends Controller
  
         return $users;
     }
-    public function showme(){
-
-            $search = \Request::get('q');
+    public function showme(Request $request) {
+            $search =$request->get('q');
             $users = Subcategory::where(function($query) use ($search){
                 $query->where('belongs_to','LIKE',"%$search%");
             })->paginate(10);

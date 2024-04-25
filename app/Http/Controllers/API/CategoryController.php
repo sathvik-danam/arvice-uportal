@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -77,8 +78,8 @@ class CategoryController extends Controller
         $user = Category::findOrFail($id);
         $user->delete();
     }
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = Category::where(function($query) use ($search){
                 $query->where('name','LIKE',"%$search%");
             })->paginate(10);

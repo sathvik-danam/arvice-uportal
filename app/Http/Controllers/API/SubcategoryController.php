@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request; 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Subcategory;
 
 class SubcategoryController extends Controller
@@ -86,8 +87,8 @@ class SubcategoryController extends Controller
         $user = Subcategory::findOrFail($id);
         $user->delete();
     }
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = Subcategory::where(function($query) use ($search){
                 $query->where('name','LIKE',"%$search%");
             })->paginate(10);

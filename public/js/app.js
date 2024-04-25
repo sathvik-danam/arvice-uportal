@@ -3385,6 +3385,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.loadSubcategories();
     this.loadCities();
+    console.log(this.cities());
     this.cities();
   }
 });
@@ -90955,11 +90956,16 @@ var app = new Vue({
     this.loadCities();
   }
 });
-$('#summernote').summernote({
-  height: 150,
-  toolbar: [// [groupName, [list of button]]
-  ['style', ['bold', 'italic', 'underline', 'clear']], ['font', ['strikethrough', 'superscript', 'subscript']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']]]
+
+$(document).ready(function() {
+  $('#summernote').summernote({
+    height: 150,
+    toolbar: [// [groupName, [list of button]]
+    ['style', ['bold', 'italic', 'underline', 'clear']], ['font', ['strikethrough', 'superscript', 'subscript']], ['fontsize', ['fontsize']], ['color', ['color']], ['para', ['ul', 'ol', 'paragraph']], ['height', ['height']]]
+  });
 });
+
+
 
 /***/ }),
 

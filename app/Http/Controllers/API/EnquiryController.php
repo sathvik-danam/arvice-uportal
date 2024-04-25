@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Enquiry;
+use App\Models\User;
 
 class EnquiryController extends Controller
 {
@@ -94,8 +95,8 @@ class EnquiryController extends Controller
         $user->delete();
     }
 
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = Enquiry::where(function($query) use ($search){
                 $query->where('profession','LIKE',"%$search%")
                 ->orWhere('name','LIKE',"%$search%")

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Mail;
+namespace App\Models\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailable;
+//use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Mail\Mailable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class InvitationSentMail extends Mailable

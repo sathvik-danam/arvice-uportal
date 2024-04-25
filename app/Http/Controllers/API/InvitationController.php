@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller; 
 use App\Models\Invitation;
 use App\Models\GuestEmail;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Mail\InvitationSentMail;
-use App\Mail\InvitationCancelMail;
-use App\Mail\MyEventMail;
+use App\Models\Mail\InvitationCancelMail;
+use App\Models\Mail\MyEventMail;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
@@ -48,7 +49,7 @@ class InvitationController extends Controller
         $relation = $request->relation; 
 
         $id = auth('api')->id();
-		$sl = time().str_slug($request->event_title);
+		$sl = time().Str::slug($request->event_title);
         $hmail = auth('api')->user()->email; 
         $data = array(
             'name' => $request->hosted_by,
@@ -64,34 +65,34 @@ class InvitationController extends Controller
         $guest = GuestEmail::select('email')
                 ->where('relation', 'Friend')
                 ->where('user_id',$id)->get();
-                $sl = time().str_slug($request->event_title);
+                $sl = time().Str::slug($request->event_title);
                  Mail::to($guest)->send(new InvitationSentMail($data));
         }
         else if($relation == "Relative"){
         $guest = GuestEmail::select('email')
                 ->where('relation', 'Relative')
                 ->where('user_id',$id)->get();
-                $sl = time().str_slug($request->event_title);
+                $sl = time().Str::slug($request->event_title);
                  Mail::to($guest)->send(new InvitationSentMail($data));
         }
         else if($relation == "Work"){
         $guest = GuestEmail::select('email')
                 ->where('relation', 'Work')
                 ->where('user_id',$id)->get();
-                $sl = time().str_slug($request->event_title);
+                $sl = time().Str::slug($request->event_title);
                  Mail::to($guest)->send(new InvitationSentMail($data));
         }
         else if($relation == "Other"){
         $guest = GuestEmail::select('email')
                 ->where('relation', 'Other')
                 ->where('user_id',$id)->get();
-                $sl = time().str_slug($request->event_title);
+                $sl = time().Str::slug($request->event_title);
                  Mail::to($guest)->send(new InvitationSentMail($data));
         }
         else if($relation == "All"){
         $guest = GuestEmail::select('email')
                 ->where('user_id',$id)->get();
-                $sl = time().str_slug($request->event_title);
+                $sl = time().Str::slug($request->event_title);
                  Mail::to($guest)->send(new InvitationSentMail($data));
         }
 
@@ -192,8 +193,8 @@ class InvitationController extends Controller
         $user->delete();
     }
 
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = Invitation::where(function($query) use ($search){
                 $query->where('event_title','LIKE',"%$search%")
                 ->orWhere('event_type','LIKE',"%$search%");

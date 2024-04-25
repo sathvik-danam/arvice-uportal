@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
+use Intervention\Image\Facades\Image;
 // use Socialite;
 // use Auth;
 
@@ -135,8 +136,8 @@ class UserController extends Controller
         $user->delete();
     }
 
-    public function search(){
-        if($search = \Request::get('q')){
+    public function search(Request $request){
+        if($search = $request->get('q')){
             $users = User::where(function($query) use ($search){
                 $query->where('name','LIKE',"%$search%")
                 ->orWhere('email','LIKE',"%$search%")

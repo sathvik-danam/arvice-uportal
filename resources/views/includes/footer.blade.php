@@ -63,11 +63,17 @@
 		<login-component></login-component>
 		 <!-- Content Wrapper. Contains page content -->
 </div>	 
-		<script type="text/javascript" src="{{ asset('job-asset/js/jquery.min.js') }}"></script>
+		<!-- script type="text/javascript" src="{{ asset('job-asset/js/jquery.min.js') }}"></script -->
 
 <!-- Include JS for Summernote -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
-		<script src="{{ asset('job-asset/js/bootstrap.min.js') }}"></script>
+		<!-- script src="{{ asset('job-asset/js/bootstrap.min.js') }}"></script -->
 		<script src="{{ asset('/js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('job-asset/js/owl.carousel.min.js') }}"></script>
 		<script src="{{ asset('job-asset/js/bootsnav.js') }}"></script>

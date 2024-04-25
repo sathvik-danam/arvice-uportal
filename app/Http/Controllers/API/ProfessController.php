@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\Professional;
 use App\Models\User;
@@ -75,7 +76,7 @@ class ProfessController extends Controller
             'address' => $request['address'],
             'about' => $request['about'],
             'photo' => $request['photo'],
-            'slug' => str_slug($request->profession),
+            'slug' => Str::slug($request->profession),
             'user_id' =>auth('api')->id(),
             'name' =>auth('api')->user()->name,
             'phone' =>auth('api')->user()->phone,
