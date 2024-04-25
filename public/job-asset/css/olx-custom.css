@@ -1,0 +1,37 @@
+.olx-header {
+    font-size: 20px;
+}
+
+.required label {
+    margin-right: 10px;
+    float: right;
+}
+
+.required label:after {
+    color: #e32;
+    content: '*';
+    display: inline;
+    font-size: 20px;
+}
+.required1 label {
+    margin-right: 10px;
+    float: right;
+}
+
+.btn-danger {
+    background: #FF7700 !important;
+}
+
+.olx-submit{
+    width: 190px;
+    float: right;
+    margin-top: 10px;
+}
+tr{
+margin-bottom: 10px !important;
+margin-top: 5px !important;
+}
+td{
+    margin-bottom: 5px;
+    margin-top: 5px;
+    }
