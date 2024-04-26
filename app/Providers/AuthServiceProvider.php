@@ -43,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Log::debug("Before Passport routes");
-        Passport::routes();
+        //Passport::routes();
         Log::debug("After Passport routes");
 
         //
